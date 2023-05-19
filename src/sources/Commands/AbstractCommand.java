@@ -1,16 +1,14 @@
 package Commands;
 
-import Interface.Client;
-import Interface.Command;
+import Client.Client;
 import Server.Receiver;
 
 public abstract class AbstractCommand implements Command {
-    final String name;
-
-    final Client client;
-
-    final Receiver receiver;
-
+    final protected String name;
+    public final static int ARGS_LENGTH = 0;
+    public static final String DESCRIPTION = "Abstract command";
+    final protected Client client;
+    final protected Receiver receiver;
 
     public AbstractCommand(String name, Client client, Receiver receiver) {
         this.name = name;
@@ -25,9 +23,9 @@ public abstract class AbstractCommand implements Command {
     public String getName() {
         return name;
     }
+
     public Client getClient(){
         return client;
     }
-
 
 }

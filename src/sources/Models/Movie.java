@@ -21,30 +21,13 @@ public class Movie {
         nextID += 1;
         this.name = name;
         this.coordinates = coordinates;
-        this.oscarsCount = oscarsCount;
-        this.genre = genre;
-        this.mpaaRating = mpaaRating;
-        this.operator = operator;
-    }
-    public Movie(String name, Coordinates coordinates, java.time.LocalDate creationDate, Long oscarsCount, MovieGenre genre, MpaaRating mpaaRating, Person operator){
-        this.id = nextID;
-        nextID += 1;
-        this.name = name;
-        this.coordinates = coordinates;
-        this.creationDate = creationDate;
+        this.creationDate = LocalDate.now();
         this.oscarsCount = oscarsCount;
         this.genre = genre;
         this.mpaaRating = mpaaRating;
         this.operator = operator;
     }
 
-    // TODO: 16.04.2023 сделать автоматически обновляемый id так чтобы придабавлии фильма последним он просто добавлял id, при добавлении первым передвигал все id, итакже при удалении
-//    public static void updateNextID(int startIndex) {
-//        int id = startIndex + 1;
-//        for (int i = startIndex; i < movies.size(); i++) {
-//            movies.get(i).setId(id++);
-//        }
-//    }
     public int getId() {
         return id;
     }
@@ -131,6 +114,7 @@ public class Movie {
                 ", operator=" + operator +
                 "}";
     }
+
 
 
 }

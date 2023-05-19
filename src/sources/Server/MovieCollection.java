@@ -1,25 +1,114 @@
 package Server;
 
+import Enums.MovieGenre;
+import Enums.MpaaRating;
+import Models.Coordinates;
 import Models.Movie;
+import Models.Person;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 public class MovieCollection {
-    private ArrayDeque<Movie> movieArrayDeque = new ArrayDeque<>();
-    public void addMovie(Movie movie) {
+    private final ArrayDeque<Movie> movieArrayDeque = new ArrayDeque<>();
+    private ZonedDateTime initializationDate;
+
+
+
+    public MovieCollection() {
+        initializationDate = ZonedDateTime.now();
+    }
+
+    public ArrayDeque<Movie> getMovieArrayDeque() {
+        return movieArrayDeque;
+    }
+
+    public void add(Movie movie) {
         movieArrayDeque.addLast(movie);
     }
-    public void removeFirstMovie() {
-        movieArrayDeque.removeFirst();
+
+    public Movie remove_head() {
+       return movieArrayDeque.removeFirst();
     }
-    public void removeLastMovie(){
+
+    public void removeLastMovie() {
         movieArrayDeque.removeLast();
     }
+
     // получение количества фильмов в коллекции
     public int getSize() {
         return movieArrayDeque.size();
     }
+    public void remove_first(){
+        movieArrayDeque.removeFirst();
+    }
 
+    public void clear() {
+        movieArrayDeque.clear();
+    }
 
+    public Movie head() {
+       return movieArrayDeque.peekFirst();
+    }
 
+    public boolean remove_by_id(int id) {
+        for (Movie i : movieArrayDeque) {
+            if (i.getId() == id) {
+                movieArrayDeque.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int count_less_than_operator(Person operator) {
+        int count = 0;
+        for (Movie movie : movieArrayDeque) {
+            if (movie.getOperator().compareTo(operator) < 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public ArrayList<Movie> filter_contains_name(String name) {
+        ArrayList<Movie> movies = new ArrayList<>();
+        for (Movie movie : movieArrayDeque) {
+            if (movie.getName().contains(name))
+                movies.add(movie);
+        }
+        return movies;
+    }
+
+    public void updateMovie(int id, String name, Coordinates coordinates, Long oscarsCount, MovieGenre genre, MpaaRating mpaaRating, Person operator) {
+
+        for (Movie movie : movieArrayDeque) {
+            if (movie.getId() == id) {
+                movie.setName(name);
+                movie.setCoordinates(coordinates);
+                movie.setOscarsCount(oscarsCount);
+                movie.setGenre(genre);
+                movie.setMpaaRating(mpaaRating);
+                movie.setOperator(operator);
+                break;
+            }
+        }
+    }
+    public ArrayDeque<Movie> filter_less_than_oscars_count(Long oscarsCount){
+        ArrayDeque<Movie> movies = new ArrayDeque<>();
+        for (Movie movie: movieArrayDeque){
+            if (movie.getOscarsCount().compareTo(oscarsCount) < 0){
+                movies.add(movie);
+            }
+        }
+        return movies;
+    }
+    public ZonedDateTime getInitializationDate() {
+        return initializationDate;
+    }
+
+    public void setInitializationDate(ZonedDateTime initializationDate) {
+        this.initializationDate = initializationDate;
+    }
 }
+

@@ -2,8 +2,8 @@ package InputOutput;
 
 import Server.MovieCollection;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public interface MovieCollectionFileReader {
-    MovieCollection read() throws FileNotFoundException;
+    MovieCollection read() throws IOException;
 }
