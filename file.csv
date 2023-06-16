@@ -1,3 +1,4 @@
-movieName;coordinatesX;coordinatesY;creationDate;oscarsCount;genre;mpaaRating;operatorName;weight;eyeColor;hairColor;nationality;locationX;locationY;locationZ
-Такси;47;2;1998-11-01;0;THRILLER;NC_17;Жан-Пьер Совер;70;GREEN;BLACK;THAILAND;0;1;2
-Невероятные приключения итальянцев в России;48;3;1974-01-02;0;COMEDY;PG;Габор Погань;80;BLUE;BROWN;NORTH_KOREA;4;5;6
+2023-05-19T18:45:36.818293+03:00[Europe/Moscow]
+"movieName";"coordinatesX";"coordinatesY";"creationDate";"oscarsCount";"genre";"mpaaRating";"operatorName";"weight";"eyeColor";"hairColor";"nationality";"locationX";"locationY";"locationZ"
+"avatar";"45.0";"67.0";"2023-06-16";"4";"COMEDY";"G";"name";"45";"56";"BLUE";"BLACK";"USA";"34.0";"45.0";"67"
+"name";"45.0";"0.0";"2023-06-16";"23";"COMEDY";"G";"name";"45";"45";"BLACK";"WHITE";"USA";"34.0";"23.0";"54"

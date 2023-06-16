@@ -9,7 +9,7 @@ public class Coordinates {
         this.y = y;
     }
 
-    public double getX() {
+    public Double getX() {
         return x;
     }
 

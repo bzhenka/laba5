@@ -1,8 +1,10 @@
 package Client.Form;
 
 import Enums.Color;
+import Enums.ConsoleColor;
 import Enums.Country;
 import InputOutput.Reader;
+import exceptions.InputInterruptionException;
 import exceptions.WrongArgumentException;
 
 import java.util.Objects;
@@ -13,15 +15,19 @@ public class OperatorForm extends Form{
     }
 
     @Override
-    public String[] getData() throws WrongArgumentException{
+    public String[] getData() throws WrongArgumentException, InputInterruptionException {
         String[] movieArgs = new String[9];
         String name = null;
-        while (name==null){
-            String nameS = reader.readLineWithMessage("Введите имя оператора: ");
-            if (!Objects.equals(nameS, "")) {
-                name = nameS;
-            } else {
-                System.out.println("Имя не может быть пустым");
+        while (name == null){
+            name = reader.readLineWithMessage("Введите имя оператора: ");
+
+            if (name.equalsIgnoreCase("cancel")) {
+                throw new InputInterruptionException("\n Вы вышли из команды");
+            }
+
+            if (Objects.equals(name, "")){
+                name = null;
+                System.out.println(ConsoleColor.RED.getCode() + "Имя не может быть пустым");
             }
         }
         movieArgs[0] = name;
@@ -29,35 +35,48 @@ public class OperatorForm extends Form{
         Integer weight = null;
         while (weight == null){
             try {
-                String weightS =  reader.readLineWithMessage("Введите вес оператора: ");
-                weight = Integer.parseInt(weightS);
-                if (weight < 0){
-                    throw new WrongArgumentException("Неверно введен вес");
+                String weightS =  reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите вес оператора: ");
+                if (weightS.equalsIgnoreCase("cancel")) {
+                    throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
                 }
+                weight = Integer.parseInt(weightS);
+                if (weight <= 0){
+                    System.out.println(ConsoleColor.RED.getCode() + "Вес не может быть отрицательным");
+                    weight = null;
+                }
+
             }catch (NumberFormatException e){
-                System.out.println(e.getMessage());}}
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно веден вес");}}
         movieArgs[1] = String.valueOf(weight);
 
         Integer age = null;
         while (age == null){
             try {
-                String ageS = reader.readLineWithMessage("Введите возраст оператора: ");
+                String ageS = reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите возраст оператора: ");
+                if (ageS.equalsIgnoreCase("cancel")) {
+                    throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
+                }
                 age = Integer.parseInt(ageS);
-                if (age < 0){
-                    throw new WrongArgumentException("Неверно введен возраст");
+                if (age <= 0){
+                    System.out.println(ConsoleColor.RED.getCode() + "Возраст не может быть отрицательным");
+                    age = null;
                 }
             }catch (NumberFormatException e){
-                System.out.println(e.getMessage());}}
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно веден вес");}}
         movieArgs[2] = String.valueOf(age);
 
 
         Color color = null;
         while (color == null){
             try {
-                String colorS = reader.readLineWithMessage("Введите цвет глаз оператора: ");
+                String colorS = reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите цвет глаз оператора: ");
+                if (colorS.equalsIgnoreCase("cancel")) {
+                    throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
+                }
+                colorS = colorS.toUpperCase();
                 color = Color.valueOf(colorS);
             }catch (IllegalArgumentException e){
-                System.out.println("Неверно введен цвет глаз");
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно введен цвет глаз");
             }}
         movieArgs[3] = String.valueOf(color);
 
@@ -66,10 +85,14 @@ public class OperatorForm extends Form{
         Color color1 = null;
         while (color1 == null){
             try {
-                String colorS = reader.readLineWithMessage("Введите цвет волос оператора: ");
+                String colorS = reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите цвет волос оператора: ");
+                if (colorS.equalsIgnoreCase("cancel")) {
+                    throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
+                }
+                colorS = colorS.toUpperCase();
                 color1 = Color.valueOf(colorS);
             }catch (IllegalArgumentException e){
-                System.out.println("Неверно введен цвет волос");
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно введен цвет волос");
             }}
         movieArgs[4] = String.valueOf(color1);
 
@@ -77,39 +100,52 @@ public class OperatorForm extends Form{
         while(country == null){
 
             try {
-                String countyS = reader.readLineWithMessage("Введите национальность оператора: ");
-                country = Country.valueOf(countyS);
+                String countryS = reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите национальность оператора: ");
+                if (countryS.equalsIgnoreCase("cancel")) {
+                    throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
+                }
+                countryS = countryS.toUpperCase();
+                country = Country.valueOf(countryS);
             }catch (IllegalArgumentException e){
-                System.out.println("Неверно введена страна оператора");
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно введена страна оператора");
             }}
         movieArgs[5] = String.valueOf(country);
         Double x = null;
         while (x == null) {
             try {
-                String xString = reader.readLineWithMessage("Введите координату x: ");
+                String xString = reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите координату x: ");
+                if (xString.equalsIgnoreCase("cancel")) {
+                    throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
+                }
                 x = Double.parseDouble(xString);
             } catch (NumberFormatException e) {
-                System.out.println("Неверно введена координата х");
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно введена координата х");
             }
         }
         movieArgs[6] = String.valueOf(x);
         Float y = null;
         while (y == null){
-            String yString = reader.readLineWithMessage("Введите координату y: ");
+            String yString = reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите координату y: ");
+            if (yString.equalsIgnoreCase("cancel")) {
+                throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
+            }
             try {
                 y = Float.valueOf(yString);
             } catch (NumberFormatException e) {
-                System.out.println("Неверно введена координата y");
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно введена координата y");
             }
         }
         movieArgs[7] = String.valueOf(y);
         Integer z = null;
         while(z == null){
             try {
-                String zString = reader.readLineWithMessage("Введите координату z: ");
+                String zString = reader.readLineWithMessage(ConsoleColor.CYAN.getCode() + "Введите координату z: ");
+                if (zString.equalsIgnoreCase("cancel")) {
+                    throw new InputInterruptionException(ConsoleColor.YELLOW.getCode() + "\n Вы вышли из команды");
+                }
                 z = Integer.valueOf(zString);
             } catch (NumberFormatException e) {
-                System.out.println("Неверно введена координата z ");
+                System.out.println(ConsoleColor.RED.getCode() + "Неверно введена координата z ");
             }}
         movieArgs[8] = String.valueOf(z);
         return movieArgs;

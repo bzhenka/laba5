@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="laba5:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/laba5_jar</output-path>
+    <root id="archive" name="laba5.jar">
+      <element id="module-output" name="laba5" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/resources/commons-beanutils-1.9.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/resources/commons-lang3-3.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/resources/commons-text-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/resources/commons-collections-3.2.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/resources/opencsv-4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/resources/commons-logging-1.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

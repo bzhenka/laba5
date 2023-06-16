@@ -12,17 +12,21 @@ import Models.Coordinates;
 import Models.Location;
 import Models.Movie;
 import Models.Person;
+import exceptions.FilePermissionException;
+import exceptions.IncorrectFileException;
+import exceptions.MovieNotFoundException;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Receiver {
     private final MovieCollection movieCollection;
     private final MovieCollectionFileReader csvFileReader;
     private final MovieCollectionFileWriter csvFileWriter;
-    public Receiver() throws IOException {
+    public Receiver() throws IOException, FilePermissionException, IncorrectFileException {
         String path = System.getenv("LAB5_COLLECTION");
         this.csvFileReader = new MovieCollectionCSVFileReader(path);
         this.csvFileWriter = new MovieCollectionCSVFileWriter(path);
@@ -82,6 +86,7 @@ public class Receiver {
         Integer location_z = Integer.valueOf(movieArguments[14]);
         Location location = new Location(location_x, location_y, location_z);
         Person operator = new Person(operatorName, weight, age, eyeColor, hairColor, nationality, location);
+
 
         movieCollection.updateMovie(id, name, coordinates, oscarCount, movieGenre, mpaaRating, operator);
     }

@@ -1,6 +1,7 @@
 package Client.Form;
 
 import InputOutput.Reader;
+import exceptions.InputInterruptionException;
 import exceptions.WrongArgumentException;
 
 public abstract class Form {
@@ -10,5 +11,5 @@ public abstract class Form {
         this.reader = reader;
     }
 
-    abstract String[] getData() throws WrongArgumentException;
+    abstract String[] getData() throws WrongArgumentException, InputInterruptionException;
 }

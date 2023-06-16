@@ -61,6 +61,15 @@ public class MovieCollection {
         return false;
     }
 
+    public Movie get_by_id(int id) {
+        for (Movie i : movieArrayDeque) {
+            if (i.getId() == id) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     public int count_less_than_operator(Person operator) {
         int count = 0;
         for (Movie movie : movieArrayDeque) {
@@ -81,6 +90,7 @@ public class MovieCollection {
     }
 
     public void updateMovie(int id, String name, Coordinates coordinates, Long oscarsCount, MovieGenre genre, MpaaRating mpaaRating, Person operator) {
+
 
         for (Movie movie : movieArrayDeque) {
             if (movie.getId() == id) {
